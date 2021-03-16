@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_unity/flutter_unity.dart';
 
-import '../api_data_bloc.dart';
-
 class FlutterUnityAttach extends StatefulWidget {
   FlutterUnityAttach({this.condition, this.temperature, this.weather});
   final String condition;
@@ -14,7 +12,6 @@ class FlutterUnityAttach extends StatefulWidget {
 
 class _FlutterUnityAttachState extends State<FlutterUnityAttach> {
   UnityViewController unityViewController;
-  DataBloc _dataBloc = DataBloc();
   @override
   void initState() {
     super.initState();

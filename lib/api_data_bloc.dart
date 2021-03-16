@@ -34,29 +34,19 @@ class DataBloc {
     eventStream.listen((event) async {
       switch (event) {
         case CityName.Coimbra:
-          var getWeather = await listData('2740636');
-          print('GETWEATHER: $getWeather\n'
-              'LISTOFDATA: $listOfData');
+          await listData('2740636');
           break;
         case CityName.Faro:
-          var getWeather = await listData('2268337');
-          print('GETWEATHER: $getWeather\n'
-              'LISTOFDATA: $listOfData');
+          await listData('2268337');
           break;
         case CityName.Leiria:
-          var getWeather = await listData('2267094');
-          print('GETWEATHER: $getWeather\n'
-              'LISTOFDATA: $listOfData');
+          await listData('2267094');
           break;
         case CityName.Lisboa:
-          var getWeather = await listData('2267056');
-          print('GETWEATHER: $getWeather\n'
-              'LISTOFDATA: $listOfData');
+          await listData('2267056');
           break;
         case CityName.Porto:
-          var getWeather = await listData('2735941');
-          print('GETWEATHER: $getWeather\n'
-              'LISTOFDATA: $listOfData');
+          await listData('2735941');
           break;
       }
     });

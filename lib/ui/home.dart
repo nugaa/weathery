@@ -72,7 +72,6 @@ class _HomeState extends State<Home> {
                     onPress: () async {
                       _dataBloc.eventSink.add(CityName.Coimbra);
                       var weatherData = _dataBloc.receiveData;
-                      print('DADOS $weatherData');
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -90,7 +89,6 @@ class _HomeState extends State<Home> {
                     onPress: () {
                       _dataBloc.eventSink.add(CityName.Faro);
                       var weatherData = _dataBloc.receiveData;
-                      print('DADOS $weatherData');
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -108,7 +106,6 @@ class _HomeState extends State<Home> {
                     onPress: () {
                       _dataBloc.eventSink.add(CityName.Leiria);
                       var weatherData = _dataBloc.receiveData;
-                      print('DADOS $weatherData');
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -143,8 +140,6 @@ class _HomeState extends State<Home> {
                     onPress: () async {
                       _dataBloc.eventSink.add(CityName.Porto);
                       var weatherData = _dataBloc.receiveData;
-                      print('DADOS $weatherData');
-                      setState(() {});
                       Navigator.push(
                         context,
                         MaterialPageRoute(
