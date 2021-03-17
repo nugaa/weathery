@@ -28,71 +28,72 @@ class _FlutterUnityAttachState extends State<FlutterUnityAttach> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Weather in ${widget.cityName}'),
-          backgroundColor: Colors.transparent,
-        ),
-        backgroundColor: Color(0xff003859),
-        body: FutureBuilder(
-            future: _cityWeatherData.getCityById(widget.idString),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (snapshot.connectionState == ConnectionState.waiting) {
-                return _OnWaiting();
-              }
-              weatherData = snapshot.data;
-              return Column(
-                children: [
-                  Padding(
+      appBar: AppBar(
+        title: Text('Weather in ${widget.cityName}'),
+        backgroundColor: Colors.transparent,
+      ),
+      backgroundColor: Color(0xff003859),
+      body: FutureBuilder(
+        future: _cityWeatherData.getCityById(widget.idString),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
+            return _OnWaiting();
+          }
+          weatherData = snapshot.data;
+          return Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black12,
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  child: Padding(
                     padding: const EdgeInsets.all(12.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.black12,
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              weatherData[1],
-                              style: TextStyle(
-                                fontSize: 25.0,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Text(
-                              weatherData[0],
-                              style: TextStyle(
-                                fontSize: 25.0,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          weatherData[1],
+                          style: TextStyle(
+                            fontSize: 25.0,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
+                        Text(
+                          weatherData[0],
+                          style: TextStyle(
+                            fontSize: 25.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  Expanded(
-                    child: UnityView(
-                      onCreated: onUnityViewCreated,
-                      onReattached: onUnityViewReattached,
-                      onMessage: onUnityViewMessage,
-                    ),
-                  ),
-                ],
-              );
-            }));
+                ),
+              ),
+              Flexible(
+                child: UnityView(
+                  onCreated: onUnityViewCreated,
+                  onReattached: onUnityViewReattached,
+                  onMessage: onUnityViewMessage,
+                ),
+              ),
+            ],
+          );
+        },
+      ),
+    );
   }
 
   void onUnityViewCreated(UnityViewController controller) {
     print('onUnityViewCreated');
-    //sunclouds ; rain ; clearsun
     unityViewController = controller;
     controller.send(
         'CameraRotator/Main Camera', 'SetActiveObj', weatherData[2]);
