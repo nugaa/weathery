@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:weathery/api_data_bloc.dart';
 import 'package:weathery/ui/flutter_unity_attach.dart';
 
 class Home extends StatefulWidget {
@@ -10,7 +9,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final DataBloc _dataBloc = DataBloc();
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,52 +41,42 @@ class _HomeState extends State<Home> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              StreamBuilder(
-                stream: Stream.periodic(const Duration(seconds: 1)),
-                builder: (context, snapshot) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0, vertical: 4.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          DateFormat('dd-MM-yyyy').format(DateTime.now()),
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black.withOpacity(0.8),
-                          ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        DateFormat('dd-MM-yyyy').format(DateTime.now()),
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black.withOpacity(0.8),
                         ),
-                        Text(
-                          DateFormat('Hms').format(DateTime.now()),
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black.withOpacity(0.8),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
+                      ),
+                      StreamBuilder(
+                          stream: Stream.periodic(const Duration(seconds: 1)),
+                          builder: (context, snapshot) {
+                            return Text(
+                              DateFormat('Hms').format(DateTime.now()),
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black.withOpacity(0.8),
+                              ),
+                            );
+                          }),
+                    ]),
               ),
-              ListView(
-                shrinkWrap: true,
+              Column(
                 children: [
                   CityCard(
                     cityName: 'Coimbra',
-                    onPress: () async {
-                      _dataBloc.eventSink.add(CityName.Coimbra);
-                      var weatherData = _dataBloc.receiveData;
-                      Navigator.push(
-                        context,
+                    onPress: () {
+                      Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => FlutterUnityAttach(
-                            temperature: weatherData[0],
-                            weather: weatherData[1],
-                            condition: weatherData[2],
-                          ),
+                          builder: (context) => FlutterUnityAttach('2740636'),
                         ),
                       );
                     },
@@ -87,16 +84,9 @@ class _HomeState extends State<Home> {
                   CityCard(
                     cityName: 'Faro',
                     onPress: () {
-                      _dataBloc.eventSink.add(CityName.Faro);
-                      var weatherData = _dataBloc.receiveData;
-                      Navigator.push(
-                        context,
+                      Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => FlutterUnityAttach(
-                            temperature: weatherData[0],
-                            weather: weatherData[1],
-                            condition: weatherData[2],
-                          ),
+                          builder: (context) => FlutterUnityAttach('2268337'),
                         ),
                       );
                     },
@@ -104,16 +94,9 @@ class _HomeState extends State<Home> {
                   CityCard(
                     cityName: 'Leiria',
                     onPress: () {
-                      _dataBloc.eventSink.add(CityName.Leiria);
-                      var weatherData = _dataBloc.receiveData;
-                      Navigator.push(
-                        context,
+                      Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => FlutterUnityAttach(
-                            temperature: weatherData[0],
-                            weather: weatherData[1],
-                            condition: weatherData[2],
-                          ),
+                          builder: (context) => FlutterUnityAttach('2267094'),
                         ),
                       );
                     },
@@ -121,33 +104,19 @@ class _HomeState extends State<Home> {
                   CityCard(
                     cityName: 'Lisboa',
                     onPress: () {
-                      _dataBloc.eventSink.add(CityName.Lisboa);
-                      var weatherData = _dataBloc.receiveData;
-                      Navigator.push(
-                        context,
+                      Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => FlutterUnityAttach(
-                            temperature: weatherData[0],
-                            weather: weatherData[1],
-                            condition: weatherData[2],
-                          ),
+                          builder: (context) => FlutterUnityAttach('2267056'),
                         ),
                       );
                     },
                   ),
                   CityCard(
                     cityName: 'Porto',
-                    onPress: () async {
-                      _dataBloc.eventSink.add(CityName.Porto);
-                      var weatherData = _dataBloc.receiveData;
-                      Navigator.push(
-                        context,
+                    onPress: () {
+                      Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => FlutterUnityAttach(
-                            temperature: weatherData[0],
-                            weather: weatherData[1],
-                            condition: weatherData[2],
-                          ),
+                          builder: (context) => FlutterUnityAttach('2735941'),
                         ),
                       );
                     },

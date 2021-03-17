@@ -1170,7 +1170,7 @@ public class HtmlSampleGenerator: SampleGenerator
 					XmlSchemaAttribute attr = (XmlSchemaAttribute)at;
 					XmlSchemaAttribute refAttr = attr;
 					
-					// refAttr.Form; TODO
+					// refAttr.Form;
 					
 					if (!attr.RefName.IsEmpty) {
 						refAttr = FindRefAttribute (attr.RefName);
