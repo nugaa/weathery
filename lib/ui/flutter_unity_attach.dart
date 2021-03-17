@@ -3,8 +3,9 @@ import 'package:flutter_unity/flutter_unity.dart';
 import 'package:weathery/services/city_weather_data.dart';
 
 class FlutterUnityAttach extends StatefulWidget {
-  FlutterUnityAttach(this.idString);
+  FlutterUnityAttach({this.idString, this.cityName});
   final String idString;
+  final String cityName;
   @override
   _FlutterUnityAttachState createState() => _FlutterUnityAttachState();
 }
@@ -28,6 +29,7 @@ class _FlutterUnityAttachState extends State<FlutterUnityAttach> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          title: Text('Weather in ${widget.cityName}'),
           backgroundColor: Colors.transparent,
         ),
         backgroundColor: Color(0xff003859),
@@ -36,23 +38,10 @@ class _FlutterUnityAttachState extends State<FlutterUnityAttach> {
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircularProgressIndicator(),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 30.0),
-                        child: Text(
-                          'Verifique a sua ligação à Internet...',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.0,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+                  child: CircularProgressIndicator(),
                 );
+              } else if (snapshot.connectionState == ConnectionState.waiting) {
+                return _OnWaiting();
               }
               weatherData = snapshot.data;
               return Column(
@@ -90,7 +79,6 @@ class _FlutterUnityAttachState extends State<FlutterUnityAttach> {
                     ),
                   ),
                   Expanded(
-                    flex: 3,
                     child: UnityView(
                       onCreated: onUnityViewCreated,
                       onReattached: onUnityViewReattached,
@@ -117,5 +105,37 @@ class _FlutterUnityAttachState extends State<FlutterUnityAttach> {
   void onUnityViewMessage(UnityViewController controller, String message) {
     print('onUnityViewMessage');
     print(message);
+  }
+}
+
+class _OnWaiting extends StatelessWidget {
+  const _OnWaiting({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.error_outline,
+            size: 80.0,
+            color: Colors.blueGrey.withOpacity(0.9),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 30.0),
+            child: Text(
+              'Something went wrong...',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

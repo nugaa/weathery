@@ -52,7 +52,7 @@ class _HomeState extends State<Home> {
                         style: TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.w500,
-                          color: Colors.black.withOpacity(0.8),
+                          color: Colors.white.withOpacity(0.8),
                         ),
                       ),
                       StreamBuilder(
@@ -63,7 +63,7 @@ class _HomeState extends State<Home> {
                               style: TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.w500,
-                                color: Colors.black.withOpacity(0.8),
+                                color: Colors.white.withOpacity(0.8),
                               ),
                             );
                           }),
@@ -76,7 +76,10 @@ class _HomeState extends State<Home> {
                     onPress: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => FlutterUnityAttach('2740636'),
+                          builder: (context) => FlutterUnityAttach(
+                            idString: '2740636',
+                            cityName: 'Coimbra',
+                          ),
                         ),
                       );
                     },
@@ -86,7 +89,10 @@ class _HomeState extends State<Home> {
                     onPress: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => FlutterUnityAttach('2268337'),
+                          builder: (context) => FlutterUnityAttach(
+                            idString: '2268337',
+                            cityName: 'Faro',
+                          ),
                         ),
                       );
                     },
@@ -96,7 +102,10 @@ class _HomeState extends State<Home> {
                     onPress: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => FlutterUnityAttach('2267094'),
+                          builder: (context) => FlutterUnityAttach(
+                            idString: '2267094',
+                            cityName: 'Leiria',
+                          ),
                         ),
                       );
                     },
@@ -106,7 +115,10 @@ class _HomeState extends State<Home> {
                     onPress: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => FlutterUnityAttach('2267056'),
+                          builder: (context) => FlutterUnityAttach(
+                            idString: '2267056',
+                            cityName: 'Lisboa',
+                          ),
                         ),
                       );
                     },
@@ -116,7 +128,8 @@ class _HomeState extends State<Home> {
                     onPress: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => FlutterUnityAttach('2735941'),
+                          builder: (context) => FlutterUnityAttach(
+                              idString: '2735941', cityName: 'Porto'),
                         ),
                       );
                     },
@@ -154,16 +167,7 @@ class CityCard extends StatelessWidget {
           alignment: Alignment.centerLeft,
           height: 60.0,
           decoration: ShapeDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              colors: [
-                Colors.white24,
-                Colors.white54,
-                Colors.white60,
-                Colors.white70
-              ],
-            ),
+            color: Color(0xff076598).withOpacity(0.6),
             shadows: [
               BoxShadow(
                 color: Colors.black26,
@@ -179,11 +183,14 @@ class CityCard extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                _cityName,
-                style: TextStyle(
-                  fontSize: 24.0,
-                  color: Colors.black.withOpacity(0.8),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(
+                  _cityName,
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    color: Colors.white.withOpacity(0.9),
+                  ),
                 ),
               ),
               Padding(
@@ -191,7 +198,7 @@ class CityCard extends StatelessWidget {
                 child: Icon(
                   Icons.search,
                   size: 40.0,
-                  color: Colors.black.withOpacity(0.8),
+                  color: Colors.white.withOpacity(0.9),
                 ),
               ),
             ],
@@ -201,3 +208,14 @@ class CityCard extends StatelessWidget {
     );
   }
 }
+
+// gradient: LinearGradient(
+// begin: Alignment.bottomCenter,
+// end: Alignment.topCenter,
+// colors: [
+// Colors.white24,
+// Colors.white54,
+// Colors.white60,
+// Colors.white70
+// ],
+// ),
