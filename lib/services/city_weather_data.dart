@@ -1,7 +1,7 @@
 import 'package:weathery/services/networking.dart';
 
 const String openWeatherUrl = 'http://api.openweathermap.org/data/2.5/weather';
-const String apiKey = '8b555328cd72a4d8abeb070e965abfc5';
+const String apiKey = 'API-KEY-HERE'; //TODO: API-KEY
 
 class CityWeatherData {
   Future<List> getCityById(String cityId) async {
